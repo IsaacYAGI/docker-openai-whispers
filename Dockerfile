@@ -1,18 +1,14 @@
 FROM python:3.8.2
 
-RUN apt update && apt -y upgrade && apt -y install python3-pip ffmpeg
+RUN apt update && apt -y upgrade && apt -y install ffmpeg
 
-RUN pip3 install setuptools-rust
-
-RUN echo $PATH
+RUN pip install setuptools-rust
 
 ENV PATH="$HOME/.cargo/bin:$PATH"
 
-RUN echo $PATH
+RUN pip install --upgrade pip
 
-RUN pip3 install --upgrade pip
-
-RUN pip3 install -U openai-whisper==20230124
+RUN pip install -U openai-whisper==20230124
 
 RUN mkdir /audios
 
