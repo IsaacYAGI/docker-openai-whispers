@@ -4,6 +4,21 @@ En este repositorio se encuentra un archivo Dockerfile con toda la configuració
 # Instalación
 
 - Instalar Docker
+- Verificar que modelos se quieren preinstalar, por lo que descomentamos los que se requieran. Por defecto descargará `tiny`, `base` y `small`
+
+```
+# Install model files (comment and uncomment models required)
+
+RUN whisper --model tiny dummy.wav; exit 0
+RUN whisper --model base dummy.wav; exit 0
+RUN whisper --model small dummy.wav; exit 0
+# RUN whisper --model medium dummy.wav; exit 0
+# RUN whisper --model large dummy.wav; exit 0
+# RUN whisper --model tiny.en dummy.wav; exit 0
+# RUN whisper --model base.en dummy.wav; exit 0
+# RUN whisper --model small.en dummy.wav; exit 0
+# RUN whisper --model medium.en dummy.wav; exit 0
+```
 - Construir la imagen
 
 ```
@@ -23,7 +38,7 @@ Ej:
 whisper audio.ogg --model tiny -f txt --language Spanish
 ```
 
-La primera vez y siempre que se levante el contenedor demorará un poco porque debe descargar el modelo seleccionado, en el caso del comando de arriba es el `tiny`
+De contar con el modelo deseado ya preinstalado, el proceso inicia inmediatamente. En caso que no se encuentre preinstalado, la primera vez demorará un poco ya que debe descargar el modelo antes.
 
 Una vez corra el comando, podremos ver la salida del mismo en un archivo con el mismo nombre con extensión `.txt` en nuestra carpeta montada `/audios`
 
