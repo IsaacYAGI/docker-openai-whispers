@@ -1,6 +1,6 @@
 FROM python:3.8.2
 
-RUN apt update && apt -y upgrade && apt -y install ffmpeg
+RUN apt update && apt -y install ffmpeg
 
 RUN pip install setuptools-rust
 
